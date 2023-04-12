@@ -1,0 +1,84 @@
+#include <iostream>
+using namespace std;
+
+struct UserData{
+    private:
+        const string Name = "Abraham Ameyaw";
+        const string PhoneNumber = "0547497497";
+        string Pin = "0000";
+        long int Balance = 1000;
+    public:
+        string get_pin(){return Pin;}
+        long int get_balance(){return Balance;}
+        string set_pin(string new_pin){Pin = new_pin;}
+        void reset_pin(){Pin = "0000";}
+        void print_balance(){cout << "Your balance is GHC"<< Balance<<endl;}
+};
+UserData newUser;
+
+bool authenticate(){
+    int tries = 0;
+    string response;
+    while (tries < 3){
+        cout << "Enter Pin\n";
+        cout << ">";
+        cin >> response;
+        if (response == newUser.get_pin()){
+            return true;
+        } else {
+            cout << "Incorrect pin\n";
+            tries += 1;
+        }
+    }
+    return false;
+}
+void sendMoney(){
+    long int waste;
+    cout << "Enter recipient's number:";
+    cin >> waste;
+    cout<<"Confirm Number:";
+    cin>>waste;
+    cout << "Enter amount:";
+    cin >> waste;
+    if (waste > newUser.get_balance()){
+        cout << "You balance isn't enough\n";
+        return;
+    }
+    if (!authenticate()){
+        cout << "Authentication Failed\n";
+        return;
+    }
+    cout << "Your money has been successfully sent!\n";
+
+}
+void changePin(){
+    string newPin = "";
+    cout << "Enter new Pin:";
+    cin >> newPin;
+    newUser.set_pin(newPin);
+}
+
+int main(){
+    int response;
+    if (!authenticate()){
+        cout << "Authentication Failed";
+        return 0;
+    }
+    while (true){
+            cout << " 1. Send money\n 2. Change Pin\n 3. Reset Pin \n 4. Check balance\n 5. Exit\n";
+            cout << ">";
+            cin >> response;
+			 switch (response){
+                case 1: sendMoney(); break;
+                case 2: changePin(); break;
+                case 3: newUser.reset_pin(); break;
+                case 4: newUser.print_balance(); break;
+                case 5: return 0;
+                default: cout << "Invalid input";
+            
+            }
+cout<<"thank you for using MTN momo";
+//this line is a single line comment 
+//welcome user comment
+printf("\nWE DEY FOR YOU");
+return 0;
